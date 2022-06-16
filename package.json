@@ -18,7 +18,8 @@
     "react-toastify": "^9.0.4",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "nth-check": ">=2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
