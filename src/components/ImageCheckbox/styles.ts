@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ImageCheckboxContainer = styled.div`
   width: 13rem;
   border-radius: 8px;
-  background-color: #b9d7d9;
+  background-color: #d8c8b8;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 `;

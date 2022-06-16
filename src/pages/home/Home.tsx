@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { ImageCheckbox } from '../../components/ImageCheckbox';
 
 import RandomDogService from '../../services/RandomDogService';
+import { HomeContainer, ImageCheckboxListContainer } from './styles';
 
 export const Home: FC = () => {
   const IMAGES_AMOUNT: number = 6;
@@ -31,15 +32,17 @@ export const Home: FC = () => {
   }
 
   return (
-    <>
-      {images?.map(image => (
-        <ImageCheckbox
-          key={image}
-          imageUrl={image}
-          text='Add as favorite'
-          onClick={handleChackboxImageClick}
-        />
-      ))}
-    </>
+    <HomeContainer>
+      <ImageCheckboxListContainer>
+        {images?.map(image => (
+          <ImageCheckbox
+            key={image}
+            imageUrl={image}
+            text='Add as favorite'
+            onClick={handleChackboxImageClick}
+          />
+        ))}
+      </ImageCheckboxListContainer>
+    </HomeContainer>
   );
 };
