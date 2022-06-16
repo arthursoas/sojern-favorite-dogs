@@ -3,7 +3,8 @@ import { useQuery } from 'react-query';
 import { ImageCheckbox } from '../../components/ImageCheckbox';
 
 import RandomDogService from '../../services/RandomDogService';
-import { CTAs, GetMoreButton, HomeContainer, ImageCheckboxListContainer } from './styles';
+import { ImageCheckboxListContainer, PageContainer } from '../sharedStyles';
+import { CTAs, GetMoreButton } from './styles';
 
 export const Home: FC = () => {
   const IMAGES_AMOUNT: number = 6;
@@ -31,7 +32,6 @@ export const Home: FC = () => {
   };
 
   const handleChackboxImageClick = (event: any) => {
-    console.log(event);
     if (event.checked) {
       addDogOnFavoriteList(event.imageUrl);
       return;
@@ -72,7 +72,7 @@ export const Home: FC = () => {
   };
 
   return (
-    <HomeContainer>
+    <PageContainer>
       <ImageCheckboxListContainer>
         {images?.map(image => (
           <ImageCheckbox
@@ -80,12 +80,13 @@ export const Home: FC = () => {
             imageUrl={image}
             text='Add as favorite'
             onClick={handleChackboxImageClick}
+            showCheckbox
           />
         ))}
       </ImageCheckboxListContainer>
       <CTAs>
         <GetMoreButton onClick={hangleGetMoreImagesClick}>Get more images</GetMoreButton>
       </CTAs>
-    </HomeContainer>
+    </PageContainer>
   );
 };

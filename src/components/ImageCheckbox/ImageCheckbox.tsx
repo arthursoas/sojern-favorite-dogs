@@ -3,13 +3,15 @@ import { CheckboxContainer, ImageCard, ImageCheckboxContainer, TextLabel } from 
 
 export interface ImageCheckboxProps {
   imageUrl: string,
-  text: string,
-  onClick: (event: any) => void;
+  text?: string,
+  showCheckbox?: boolean,
+  onClick?: (event: any) => void;
 };
 
 export const ImageCheckbox: FC<ImageCheckboxProps> = ({
   imageUrl,
   text,
+  showCheckbox,
   onClick
 }) => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -17,20 +19,22 @@ export const ImageCheckbox: FC<ImageCheckboxProps> = ({
   const handleCardClick = (): void => {
     const checkStatus = !checked;
     setChecked(checkStatus);
-    onClick({
+    onClick && onClick({
       checked: checkStatus,
       imageUrl,
       text
     });
-  }
+  };
 
   return (
-    <ImageCheckboxContainer onClick={handleCardClick}>
+    <ImageCheckboxContainer onClick={showCheckbox ? handleCardClick : undefined} clickable={!!showCheckbox}>
       <ImageCard imageUrl={imageUrl} />
-      <CheckboxContainer>
-        <input type="checkbox" checked={checked} readOnly/>
-        <TextLabel>{text}</TextLabel>
-      </CheckboxContainer>
+      {showCheckbox &&
+        <CheckboxContainer>
+          <input type="checkbox" checked={checked} readOnly/>
+          <TextLabel>{text}</TextLabel>
+        </CheckboxContainer>
+      }
     </ImageCheckboxContainer>
   );
 };

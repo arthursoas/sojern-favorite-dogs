@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const ImageCheckboxContainer = styled.div`
+export const ImageCheckboxContainer = styled.div<{ clickable: boolean }>`
   width: 13rem;
   border-radius: 8px;
   background-color: #d8c8b8;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  cursor: pointer;
+  cursor: ${(props) => props.clickable ? 'pointer' : 'default'};
 `;
 
 export const ImageCard = styled.div<{ imageUrl: string }>`
