@@ -5,6 +5,7 @@ export const PageContainer = styled.div`
   flex-direction: column;
   margin: 1.5rem;
   align-items: center;
+  text-align: center;
 `;
 
 export const ImageCheckboxListContainer = styled.div`
