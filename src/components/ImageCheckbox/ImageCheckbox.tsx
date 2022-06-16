@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { CheckboxContainer, ImageCard, ImageCheckboxContainer, TextLabel } from './styles';
 
 export interface ImageCheckboxProps {
   imageUrl: string,
   text: string,
-  onClick: (event: InputEvent) => void;
+  onClick: (event: any) => void;
 };
 
 export const ImageCheckbox: FC<ImageCheckboxProps> = ({
@@ -11,9 +12,20 @@ export const ImageCheckbox: FC<ImageCheckboxProps> = ({
   text,
   onClick
 }) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const handleCardClick = (): void => {
+    setChecked(checked => !checked);
+    onClick({});
+  }
+
   return (
-    <>
-      <div>Test</div>
-    </>
+    <ImageCheckboxContainer onClick={handleCardClick}>
+      <ImageCard imageUrl={imageUrl} />
+      <CheckboxContainer>
+        <input type="checkbox" checked={checked} />
+        <TextLabel>{text}</TextLabel>
+      </CheckboxContainer>
+    </ImageCheckboxContainer>
   );
 };
