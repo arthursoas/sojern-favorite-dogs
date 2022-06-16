@@ -7,6 +7,8 @@ export const NavbarCotainer = styled.div`
   gap: 2rem;
   align-items: center;
   padding: 0.5rem;
+  position: sticky;
+  top: 0;
 `;
 
 export const NavbarOption = styled.label<{ bold: boolean }>`
