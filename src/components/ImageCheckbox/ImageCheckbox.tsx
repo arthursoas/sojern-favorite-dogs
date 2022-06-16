@@ -16,14 +16,17 @@ export const ImageCheckbox: FC<ImageCheckboxProps> = ({
 
   const handleCardClick = (): void => {
     setChecked(checked => !checked);
-    onClick({});
+    onClick({
+      imageUrl,
+      text
+    });
   }
 
   return (
     <ImageCheckboxContainer onClick={handleCardClick}>
       <ImageCard imageUrl={imageUrl} />
       <CheckboxContainer>
-        <input type="checkbox" checked={checked} />
+        <input type="checkbox" checked={checked} readOnly/>
         <TextLabel>{text}</TextLabel>
       </CheckboxContainer>
     </ImageCheckboxContainer>

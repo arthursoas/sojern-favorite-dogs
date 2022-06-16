@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { ImageCheckbox } from '../../components/ImageCheckbox';
 
 import RandomDogService from '../../services/RandomDogService';
-import { HomeContainer, ImageCheckboxListContainer } from './styles';
+import { CTAs, GetMoreButton, HomeContainer, ImageCheckboxListContainer } from './styles';
 
 export const Home: FC = () => {
   const IMAGES_AMOUNT: number = 6;
@@ -14,18 +14,21 @@ export const Home: FC = () => {
     const images = await randomDogService.getRandomDogImages(IMAGES_AMOUNT);
     return images;
   }
-  const { data } = useQuery('randomDogImages', fecthDogImages, {
-    refetchOnMount: true,
+  const { data, refetch } = useQuery('randomDogImages', fecthDogImages, {
+    refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setImages(data);
     }
   }, [data]);
+
+  const hangleGetMoreImagesClick = (_: unknown) => {
+    refetch();
+  };
 
   const handleChackboxImageClick = (event: InputEvent) => {
     console.log(event);
@@ -43,6 +46,9 @@ export const Home: FC = () => {
           />
         ))}
       </ImageCheckboxListContainer>
+      <CTAs>
+        <GetMoreButton onClick={hangleGetMoreImagesClick}>Get more images</GetMoreButton>
+      </CTAs>
     </HomeContainer>
   );
 };
