@@ -4,7 +4,7 @@ import { ImageCheckbox } from '../../components/ImageCheckbox';
 
 import RandomDogService from '../../services/RandomDogService';
 import { ImageCheckboxListContainer, PageContainer } from '../sharedStyles';
-import { CTAs, GetMoreButton } from './styles';
+import { GetMoreButton } from './styles';
 
 export const Home: FC = () => {
   const IMAGES_AMOUNT: number = 6;
@@ -15,7 +15,7 @@ export const Home: FC = () => {
     const images = await randomDogService.getRandomDogImages(IMAGES_AMOUNT);
     return images;
   }
-  const { data, refetch } = useQuery('randomDogImages', fecthDogImages, {
+  const { data, refetch, isFetching } = useQuery('randomDogImages', fecthDogImages, {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -73,8 +73,12 @@ export const Home: FC = () => {
 
   return (
     <PageContainer>
+      <h1>🐶 Select your favorite dogs</h1>
       <ImageCheckboxListContainer>
-        {images?.map(image => (
+        {isFetching &&
+          <h3>Loading...</h3>
+        }
+        {!isFetching && images?.map(image => (
           <ImageCheckbox
             key={image}
             imageUrl={image}
@@ -84,9 +88,7 @@ export const Home: FC = () => {
           />
         ))}
       </ImageCheckboxListContainer>
-      <CTAs>
-        <GetMoreButton onClick={hangleGetMoreImagesClick}>Get more images</GetMoreButton>
-      </CTAs>
+      <GetMoreButton onClick={hangleGetMoreImagesClick}>Show me more dogs</GetMoreButton>
     </PageContainer>
   );
 };

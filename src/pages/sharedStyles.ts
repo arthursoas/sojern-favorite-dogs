@@ -10,7 +10,8 @@ export const PageContainer = styled.div`
 export const ImageCheckboxListContainer = styled.div`
   display: flex;
   gap: 1.5rem;
-  margin: 0 auto;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
   justify-content: center;
   flex-wrap: wrap;
 `;

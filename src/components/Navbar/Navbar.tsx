@@ -14,11 +14,11 @@ export const Navbar: FC = () => {
     <NavbarCotainer>
       <NavbarOption
         bold={location.pathname === '/'}
-        onClick={(_) => {navigateTo('/')}}>🏠 Home
+        onClick={(_) => {navigateTo('/')}}>🐶 Home
       </NavbarOption>
       <NavbarOption
         bold={location.pathname === '/favorites'}
-        onClick={(_) => {navigateTo('/favorites')}}>⭐ Favorites
+        onClick={(_) => {navigateTo('/favorites')}}>❤️ Favorites
       </NavbarOption>
     </NavbarCotainer>
   );

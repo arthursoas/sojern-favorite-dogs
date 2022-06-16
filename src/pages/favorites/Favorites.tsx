@@ -30,7 +30,8 @@ export const Favorites: FC = () => {
 
   return (
     <PageContainer>
-    <ImageCheckboxListContainer>
+      <h1>❤️ Your favorite dogs are here</h1>
+      <ImageCheckboxListContainer>
         {images?.map(image => (
           <ImageCheckbox
             key={image}
