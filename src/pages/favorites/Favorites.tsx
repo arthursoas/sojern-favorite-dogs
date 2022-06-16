@@ -16,7 +16,7 @@ export const Favorites: FC = () => {
 
     return favoriteDogsArray;
   }
-  const { data } = useQuery('favoriteDogImages', fecthDogImages, {
+  const { data, isFetching } = useQuery('favoriteDogImages', fecthDogImages, {
     refetchOnMount: true,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -32,12 +32,22 @@ export const Favorites: FC = () => {
     <PageContainer>
       <h1>❤️ Your favorite dogs are here</h1>
       <ImageCheckboxListContainer>
-        {images?.map(image => (
-          <ImageCheckbox
-            key={image}
-            imageUrl={image}
-          />
-        ))}
+        {isFetching &&
+          <h3>Loading...</h3>
+        }
+        {!isFetching &&
+          <>
+            {images?.length === 0 &&
+              <h3>You don't have favorite dogs yet</h3>
+            }
+            {images?.length !== 0 && images?.map(image => (
+              <ImageCheckbox
+                key={image}
+                imageUrl={image}
+              />
+            ))}
+          </>
+        }
       </ImageCheckboxListContainer>
     </PageContainer>
   );
