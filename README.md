@@ -15,6 +15,7 @@ In the project directory, you can run:
 - `react` as main framework
 - `react-router-dom` for routing
 - `react-query` for data fetching
+- `react-toastify` for toasts
 - `styled-components` for CSS
 - `TypeScript` for variables typing
 
