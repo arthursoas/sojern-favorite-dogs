@@ -1,4 +1,4 @@
-import { ImageCheckbox, ImageCheckboxProps } from './ImageCheckbox';
+import { ImageCard, ImageCardProps } from './ImageCard';
 
-export type { ImageCheckboxProps };
-export { ImageCheckbox };
+export type { ImageCardProps };
+export { ImageCard };

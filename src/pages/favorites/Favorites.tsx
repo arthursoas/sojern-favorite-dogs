@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { ImageCheckbox } from '../../components/ImageCheckbox';
-import { ImageCheckboxListContainer, PageContainer } from '../sharedStyles';
+import { ImageCard } from '../../components/ImageCheckbox';
+import { ImageCardListContainer, PageContainer } from '../sharedStyles';
 
 export const Favorites: FC = () => {
   const [images, setImages] = useState<string[]>();
@@ -31,7 +31,7 @@ export const Favorites: FC = () => {
   return (
     <PageContainer>
       <h1>❤️ Your favorite dogs are here</h1>
-      <ImageCheckboxListContainer>
+      <ImageCardListContainer>
         {isFetching &&
           <h3>Loading...</h3>
         }
@@ -41,14 +41,14 @@ export const Favorites: FC = () => {
               <h3>You don't have favorite dogs yet</h3>
             }
             {images?.length !== 0 && images?.map(image => (
-              <ImageCheckbox
+              <ImageCard
                 key={image}
                 imageUrl={image}
               />
             ))}
           </>
         }
-      </ImageCheckboxListContainer>
+      </ImageCardListContainer>
     </PageContainer>
   );
 };

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
-import { ImageCheckbox } from '../../components/ImageCheckbox';
+import { toast } from 'react-toastify';
+import { ImageCard } from '../../components/ImageCheckbox';
 
 import RandomDogService from '../../services/RandomDogService';
-import { ImageCheckboxListContainer, PageContainer } from '../sharedStyles';
-import { GetMoreButton } from './styles';
+import { ImageCardListContainer, PageContainer, PrimaryButton } from '../sharedStyles';
 
 export const Home: FC = () => {
   const IMAGES_AMOUNT: number = 6;
@@ -32,15 +32,17 @@ export const Home: FC = () => {
   };
 
   const handleChackboxImageClick = (event: any) => {
-    if (event.checked) {
-      addDogOnFavoriteList(event.imageUrl);
+    const added = tryAddDogOnFavoriteList(event.imageUrl);
+
+    if (added) {
+      toast.success('Dog added to your favorite list!');
       return;
     }
 
-    removeDogFromFavoriteList(event.imageUrl);
+    toast.warning('Dog already on your favorite list!');
   };
 
-  const addDogOnFavoriteList = (imageUrl: string) => {
+  const tryAddDogOnFavoriteList = (imageUrl: string): boolean => {
     let favoriteDogs = window.localStorage.getItem('favorite-dogs');
     let favoriteDogsArray: string[];
     if (favoriteDogs === null || favoriteDogs === undefined) {
@@ -51,44 +53,33 @@ export const Home: FC = () => {
 
     if (favoriteDogsArray.indexOf(imageUrl) === -1) {
       favoriteDogsArray.push(imageUrl);
+      favoriteDogs = JSON.stringify(favoriteDogsArray);
+      window.localStorage.setItem('favorite-dogs', favoriteDogs);
+
+      return true;
     }
 
-    favoriteDogs = JSON.stringify(favoriteDogsArray);
-    window.localStorage.setItem('favorite-dogs', favoriteDogs);
-  };
-
-  const removeDogFromFavoriteList = (imageUrl: string) => {
-    let favoriteDogs = window.localStorage.getItem('favorite-dogs');
-    if (favoriteDogs === null || favoriteDogs === undefined) {
-      return;
-    }
-
-    const favoriteDogsArray: string[] = JSON.parse(favoriteDogs);
-    const imageIndex = favoriteDogsArray.indexOf(imageUrl);
-    favoriteDogsArray.splice(imageIndex, 1);
-
-    favoriteDogs = JSON.stringify(favoriteDogsArray);
-    window.localStorage.setItem('favorite-dogs', favoriteDogs);
+    return false;
   };
 
   return (
     <PageContainer>
       <h1>🐶 Select your favorite dogs</h1>
-      <ImageCheckboxListContainer>
+      <ImageCardListContainer>
         {isFetching &&
           <h3>Loading...</h3>
         }
         {!isFetching && images?.map(image => (
-          <ImageCheckbox
+          <ImageCard
             key={image}
             imageUrl={image}
-            text='Add as favorite'
+            buttonText='Add as favorite'
             onClick={handleChackboxImageClick}
-            showCheckbox
+            showButton
           />
         ))}
-      </ImageCheckboxListContainer>
-      <GetMoreButton onClick={hangleGetMoreImagesClick}>Show me more dogs</GetMoreButton>
+      </ImageCardListContainer>
+      <PrimaryButton onClick={hangleGetMoreImagesClick}>Show me more dogs</PrimaryButton>
     </PageContainer>
   );
 };

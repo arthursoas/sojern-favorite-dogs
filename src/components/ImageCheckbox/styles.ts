@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ImageCheckboxContainer = styled.div<{ clickable: boolean }>`
+export const ImageCardContainer = styled.div<{ clickable: boolean }>`
   width: 13rem;
   border-radius: 8px;
   background-color: #d8c8b8;
@@ -8,7 +8,7 @@ export const ImageCheckboxContainer = styled.div<{ clickable: boolean }>`
   cursor: ${(props) => props.clickable ? 'pointer' : 'default'};
 `;
 
-export const ImageCard = styled.div<{ imageUrl: string }>`
+export const Image = styled.div<{ imageUrl: string }>`
   background-image: url(${(props) => props.imageUrl});
   height: 13rem;
   background-size: cover;
@@ -22,4 +22,15 @@ export const CheckboxContainer = styled.div`
 
 export const TextLabel = styled.label`
   margin-left: 0.5rem;
+`;
+
+export const CardButton = styled.button`
+  height: 2rem;
+  font-size: 16px;
+  background-color: #c4b6a7;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100%;
 `;

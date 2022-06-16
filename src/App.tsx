@@ -1,6 +1,7 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Slide, ToastContainer } from 'react-toastify';
 import { Navbar } from './components/Navbar';
 
 import { Favorites } from './pages/favorites';
@@ -21,6 +22,16 @@ function App() {
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        transition={Slide}
+        />
     </div>
   );
 }
