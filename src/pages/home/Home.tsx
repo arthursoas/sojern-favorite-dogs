@@ -30,9 +30,46 @@ export const Home: FC = () => {
     refetch();
   };
 
-  const handleChackboxImageClick = (event: InputEvent) => {
+  const handleChackboxImageClick = (event: any) => {
     console.log(event);
-  }
+    if (event.checked) {
+      addDogOnFavoriteList(event.imageUrl);
+      return;
+    }
+
+    removeDogFromFavoriteList(event.imageUrl);
+  };
+
+  const addDogOnFavoriteList = (imageUrl: string) => {
+    let favoriteDogs = window.localStorage.getItem('favorite-dogs');
+    let favoriteDogsArray: string[];
+    if (favoriteDogs === null || favoriteDogs === undefined) {
+      favoriteDogsArray = [];
+    } else {
+      favoriteDogsArray = JSON.parse(favoriteDogs);
+    }
+
+    if (favoriteDogsArray.indexOf(imageUrl) === -1) {
+      favoriteDogsArray.push(imageUrl);
+    }
+
+    favoriteDogs = JSON.stringify(favoriteDogsArray);
+    window.localStorage.setItem('favorite-dogs', favoriteDogs);
+  };
+
+  const removeDogFromFavoriteList = (imageUrl: string) => {
+    let favoriteDogs = window.localStorage.getItem('favorite-dogs');
+    if (favoriteDogs === null || favoriteDogs === undefined) {
+      return;
+    }
+
+    const favoriteDogsArray: string[] = JSON.parse(favoriteDogs);
+    const imageIndex = favoriteDogsArray.indexOf(imageUrl);
+    favoriteDogsArray.splice(imageIndex, 1);
+
+    favoriteDogs = JSON.stringify(favoriteDogsArray);
+    window.localStorage.setItem('favorite-dogs', favoriteDogs);
+  };
 
   return (
     <HomeContainer>

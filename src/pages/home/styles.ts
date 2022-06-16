@@ -22,7 +22,6 @@ export const CTAs = styled.div`
   margin-top: 3rem;
 `;
 
-
 export const GetMoreButton = styled.button`
   height: 2rem;
   font-size: 16px;

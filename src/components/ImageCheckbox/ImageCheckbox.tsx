@@ -15,8 +15,10 @@ export const ImageCheckbox: FC<ImageCheckboxProps> = ({
   const [checked, setChecked] = useState<boolean>(false);
 
   const handleCardClick = (): void => {
-    setChecked(checked => !checked);
+    const checkStatus = !checked;
+    setChecked(checkStatus);
     onClick({
+      checked: checkStatus,
       imageUrl,
       text
     });
