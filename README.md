@@ -19,7 +19,7 @@ In the project directory, you can run:
 - `styled-components` for CSS
 - `TypeScript` for variables typing
 
-## What this WebApp does
+## What this WebApp do
 This WebApp fetches images from [Random Dog](https://random.dog) and allows user to select their favorite images. The selected images urls are stored locally and can be seen on the *Favorites* tab.
 
 ## What this WebApp does not do
